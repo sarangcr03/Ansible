@@ -1,6 +1,6 @@
 ---
 - name: Configure hosts file for YouTube restricted mode
-  hosts: ninjas
+  hosts: all
   tasks:
     - name: Backing up current hosts file
       win_copy:
