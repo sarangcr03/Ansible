@@ -1,6 +1,6 @@
 ---
 - name: Remove YouTube restricted mode entries from hosts file
-  hosts: ninjas
+  hosts: all
   tasks:
     - name: Remove entry for www.youtube.com
       win_lineinfile:
