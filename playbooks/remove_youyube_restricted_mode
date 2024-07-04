@@ -1,0 +1,33 @@
+---
+- name: Remove YouTube restricted mode entries from hosts file
+  hosts: ninjas
+  tasks:
+    - name: Remove entry for www.youtube.com
+      win_lineinfile:
+        path: C:\Windows\System32\drivers\etc\hosts
+        state: absent
+        line: "216.239.38.120 www.youtube.com"
+
+    - name: Remove entry for m.youtube.com
+      win_lineinfile:
+        path: C:\Windows\System32\drivers\etc\hosts
+        state: absent
+        line: "216.239.38.120 m.youtube.com"
+
+    - name: Remove entry for youtubei.googleapis.com
+      win_lineinfile:
+        path: C:\Windows\System32\drivers\etc\hosts
+        state: absent
+        line: "216.239.38.120 youtubei.googleapis.com"
+
+    - name: Remove entry for youtube.googleapis.com
+      win_lineinfile:
+        path: C:\Windows\System32\drivers\etc\hosts
+        state: absent
+        line: "216.239.38.120 youtube.googleapis.com"
+
+    - name: Remove entry for www.youtube-nocookie.com
+      win_lineinfile:
+        path: C:\Windows\System32\drivers\etc\hosts
+        state: absent
+        line: "216.239.38.120 www.youtube-nocookie.com"
