@@ -27,7 +27,7 @@
         name: "AnsiblePull"
         description: "Run ansible-pull to update playbooks at startup"
         actions:
-          - path: C:\Windows\System32\cmd.exe
+          - path: cmd.exe
             arguments: "/c C:\ansible-pull\ansible_pull.bat"
         triggers:
           - type: boot
