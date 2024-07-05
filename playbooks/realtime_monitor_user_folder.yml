@@ -16,9 +16,10 @@
     - name: Add real-time monitoring to ossec.conf
       win_lineinfile:
         path: C:\Program Files (x86)\ossec-agent\ossec.conf
-        insertafter: '<syscheck>'
-        line: '  <directories realtime="yes">C:\Users</directories>'
+        insertafter: '<!-- Default files to be monitored. -->'
+        line: '    <directories realtime="yes">C:\Users</directories>'
 
     - name: Restart Wazuh Agent service
       win_shell: Restart-Service -Name WazuhSvc
+
 
