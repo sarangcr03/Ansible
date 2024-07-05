@@ -11,5 +11,5 @@
       register: wait_for_result
 
     - name: Include tasks if connection is successful
-      include_tasks: tasks_to_run.yml
+      include_tasks: install_wazuh_agent.yml
       when: wait_for_result is success
