@@ -1,7 +1,0 @@
----
-- name: Start Wazuh Agent
-  hosts: all
-  tasks:
-    - name: Start Wazuh Agent
-      win_shell: |
-        NET START WazuhSvc
