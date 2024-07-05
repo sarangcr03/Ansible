@@ -1,6 +1,6 @@
 ---
 - name: Configure real-time monitoring for Wazuh agent
-  hosts: all
+  hosts: windows
   tasks:
     - name: Ensure the monitored directory exists
       win_file:
@@ -21,3 +21,4 @@
 
     - name: Restart Wazuh Agent service
       win_shell: Restart-Service -Name WazuhSvc
+
