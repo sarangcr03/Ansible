@@ -29,7 +29,10 @@
         actions:
           - path: C:\Windows\System32\cmd.exe
             arguments: "/c C:\ansible-pull\ansible_pull.bat"
+            working_directory: C:\ansible-pull
         triggers:
           - type: boot
         username: SYSTEM
         run_level: highest
+        state: present
+
