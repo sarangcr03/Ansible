@@ -6,7 +6,7 @@ rem Clone or pull the latest playbooks
 git clone https://github.com/sarangcr03/Ansible.git C:\ansible-pull\repo || git -C C:\ansible-pull\repo pull
 
 rem Run the main playbook
-ansible-pull -U https://github.com/sarangcr03/Ansible.git -i localhost, -e ansible_connection=local playbook.yml
+ansible-pull -U https://github.com/sarangcr03/Ansible.git -i localhost, -e ansible_connection=local install_wazuh_agent.yml
 
 rem Create the marker file to indicate the playbook has been run
 call C:\ansible-pull\marker_script.bat
