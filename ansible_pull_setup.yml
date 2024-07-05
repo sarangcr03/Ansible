@@ -23,16 +23,16 @@
         dest: C:\ansible-pull\marker_script.bat
 
     - name: Create scheduled task for ansible-pull
-      win_scheduled_task:
+      community.windows.win_scheduled_task:
         name: "Ansible Pull"
         description: "Run ansible-pull to update playbooks at startup"
         actions:
           - path: C:\Windows\System32\cmd.exe
             arguments: "/c C:\ansible-pull\ansible_pull.bat"
-            working_directory: C:\ansible-pull
         triggers:
           - type: boot
+            delay: PT1M
         username: SYSTEM
         run_level: highest
         state: present
-
+        enabled: yes
