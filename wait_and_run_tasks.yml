@@ -3,23 +3,23 @@
   ansible.builtin.wait_for_connection:
     timeout: 604800 
     delay: 10 
-  delegate_to: "{{ target_host }}"
+  delegate_to: "{{ host_item }}"
   register: wait_for_result
 
 - name: Gather facts for the host
   ansible.builtin.setup:
-  delegate_to: "{{ target_host }}"
+  delegate_to: "{{ host_item }}"
   when: wait_for_result is success
 
 - name: Download and install Wazuh Agent
   win_shell: |
     Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.8.0-1.msi -OutFile ${env:TEMP}\wazuh-agent.msi;
     msiexec.exe /i ${env:TEMP}\wazuh-agent.msi /q WAZUH_MANAGER='192.168.4.120' WAZUH_AGENT_GROUP='default' WAZUH_AGENT_NAME='{{ ansible_hostname }}'
-  delegate_to: "{{ target_host }}"
+  delegate_to: "{{ host_item }}"
   when: wait_for_result is success
 
 - name: Start Wazuh Service
   win_shell: |
     NET START WazuhSvc
-  delegate_to: "{{ target_host }}"
+  delegate_to: "{{ host_item }}"
   when: wait_for_result is success
