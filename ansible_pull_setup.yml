@@ -24,7 +24,7 @@
 
     - name: Create scheduled task for ansible-pull
       community.windows.win_scheduled_task:
-        name: "Ansible Pull"
+        name: "AnsiblePull"
         description: "Run ansible-pull to update playbooks at startup"
         actions:
           - path: C:\Windows\System32\cmd.exe
