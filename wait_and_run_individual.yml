@@ -1,6 +1,6 @@
 ---
 - name: Wait for connection and run tasks on Windows laptops
-  hosts: windows
+  hosts: all
   gather_facts: no
   tasks:
     - name: Wait for the connection to be available and run tasks
