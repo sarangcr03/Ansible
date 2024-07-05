@@ -1,0 +1,23 @@
+---
+- name: Configure real-time monitoring for Wazuh agent
+  hosts: all
+  tasks:
+    - name: Ensure the monitored directory exists
+      win_file:
+        path: C:\Users
+        state: directory
+
+    - name: Backup current ossec.conf file
+      win_copy:
+        src: C:\Program Files (x86)\ossec-agent\ossec.conf
+        dest: C:\Program Files (x86)\ossec-agent\ossec.conf.bak
+        remote_src: yes
+
+    - name: Add real-time monitoring to ossec.conf
+      win_lineinfile:
+        path: C:\Program Files (x86)\ossec-agent\ossec.conf
+        insertafter: '<syscheck>'
+        line: '  <directories realtime="yes">C:\Users</directories>'
+
+    - name: Restart Wazuh Agent service
+      win_shell: Restart-Service -Name WazuhSvc
