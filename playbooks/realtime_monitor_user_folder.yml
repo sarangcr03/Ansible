@@ -1,6 +1,6 @@
 ---
 - name: Configure real-time monitoring for Wazuh agent
-  hosts: windows
+  hosts: all
   tasks:
     - name: Ensure the monitored directory exists
       win_file:
