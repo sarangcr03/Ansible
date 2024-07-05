@@ -1,7 +1,7 @@
 ---
 - name: Download and install Wazuh Agent
   win_shell: |
-    Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.8.0-1.msi -OutFile C:\wazuh-agent.msi; msiexec.exe /i C:\wazuh-agent /q WAZUH_MANAGER='192.168.4.120' WAZUH_AGENT_GROUP='default' WAZUH_AGENT_NAME='{{ ansible_hostname }}' 
+    Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.8.0-1.msi -OutFile C:\wazuh-agent.msi; msiexec.exe /i C:\wazuh-agent /q WAZUH_MANAGER='192.168.4.120' WAZUH_AGENT_GROUP='default' WAZUH_AGENT_NAME='{{ inventory_hostname }}' 
 - name: Start Wazuh Agent
   win_shell: |
     NET START WazuhSvc
