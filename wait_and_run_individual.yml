@@ -1,7 +1,7 @@
 ---
 - name: Wait for connection and run tasks on Windows laptops
   hosts: all
-  gather_facts: no
+  gather_facts: yes
   tasks:
     - name: Wait for the connection to be available
       ansible.builtin.wait_for_connection:
