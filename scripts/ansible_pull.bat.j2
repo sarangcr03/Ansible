@@ -1,0 +1,20 @@
+@echo off
+setlocal
+
+set LOGFILE=C:\ansible-pull\ansible_pull.log
+set LASTRUNFILE=C:\ansible-pull\lastrun.txt
+
+rem Check if playbook has been run previously today
+for /f "tokens=1" %%a in ('date /t') do set TODAY=%%a
+if exist %LASTRUNFILE% (
+    for /f %%a in (%LASTRUNFILE%) do set LASTRUN=%%a
+    if "%TODAY%"=="%LASTRUN%" exit /b
+)
+
+rem Run ansible-pull
+git clone https://your-git-repository-url.git C:\ansible-pull\repo || git -C C:\ansible-pull\repo pull
+ansible-pull -U https://your-git-repository-url.git -i localhost, -e ansible_connection=local playbook.yml > %LOGFILE% 2>&1
+
+rem Update lastrun.txt with today's date
+echo %TODAY% > %LASTRUNFILE%
+endlocal
