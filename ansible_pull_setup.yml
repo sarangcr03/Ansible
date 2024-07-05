@@ -1,6 +1,6 @@
 ---
 - name: Set up ansible-pull on Windows laptops
-  hosts: windows
+  hosts: all
   tasks:
     - name: Ensure Git is installed
       win_chocolatey:
