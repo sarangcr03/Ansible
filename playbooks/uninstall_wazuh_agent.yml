@@ -1,0 +1,7 @@
+---
+- name: Install Wazuh Agent
+  hosts: all
+  tasks:
+    - name: Uninstall Wazuh Agent
+      win_shell: |
+        msiexec.exe /x wazuh-agent-4.8.0-1.msi /qn
