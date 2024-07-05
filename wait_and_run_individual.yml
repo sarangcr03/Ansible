@@ -1,0 +1,15 @@
+---
+- name: Wait for connection and run tasks on Windows laptops
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Wait for the connection to be available
+      ansible.builtin.wait_for_connection:
+        timeout: 604800
+        delay: 10
+      delegate_to: "{{ inventory_hostname }}"
+      register: wait_for_result
+
+    - name: Include tasks if connection is successful
+      include_tasks: tasks_to_run.yml
+      when: wait_for_result is success
