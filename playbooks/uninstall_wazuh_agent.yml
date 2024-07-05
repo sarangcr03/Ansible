@@ -4,4 +4,4 @@
   tasks:
     - name: Uninstall Wazuh Agent
       win_shell: |
-        msiexec.exe /x wazuh-agent-4.8.0-1.msi /qn
+        msiexec.exe /x wazuh-agent.msi /qn
