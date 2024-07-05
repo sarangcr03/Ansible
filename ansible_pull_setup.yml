@@ -1,0 +1,35 @@
+---
+- name: Set up ansible-pull on Windows laptops
+  hosts: windows
+  tasks:
+    - name: Ensure Git is installed
+      win_chocolatey:
+        name: git
+        state: present
+
+    - name: Create directory for ansible-pull
+      win_file:
+        path: C:\ansible-pull
+        state: directory
+
+    - name: Create ansible-pull batch script
+      win_template:
+        src: templates/ansible_pull.bat.j2
+        dest: C:\ansible-pull\ansible_pull.bat
+
+    - name: Create marker file script
+      win_template:
+        src: templates/marker_script.bat.j2
+        dest: C:\ansible-pull\marker_script.bat
+
+    - name: Create scheduled task for ansible-pull
+      win_scheduled_task:
+        name: "Ansible Pull"
+        description: "Run ansible-pull to update playbooks at startup"
+        actions:
+          - path: C:\Windows\System32\cmd.exe
+            arguments: "/c C:\ansible-pull\ansible_pull.bat"
+        triggers:
+          - type: boot
+        username: SYSTEM
+        run_level: highest
